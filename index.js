@@ -48,10 +48,14 @@ function express_json5(options) {
 					return next(err)
 				}
 			}
-			if (strict && typeof(req.body) !== 'object') return next(error(400, 'invalid json'))
+			if (strict && isPrimitive(req.body)) return next(error(400, 'invalid json'))
 			next()
 		})
 	}
+}
+
+function isPrimitive(val) {
+	return val !== function() { return this }.call(val)
 }
 
 function hasBody(req) {

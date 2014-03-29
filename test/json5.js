@@ -59,6 +59,25 @@ describe('express_json5()#json5', function(){
         done();
       });
     })
+
+    it('should not allow null', function(done){
+      var app = connect();
+      app.use(express_json5({ strict: true }));
+
+      app.use(function(req, res){
+        res.end(JSON.stringify(req.body));
+      });
+
+      request(app)
+      .post('/')
+      .set('Content-Type', 'application/json5')
+      .send('null')
+      .end(function(err, res){
+        res.should.have.status(400);
+        res.text.should.include('invalid json');
+        done();
+      });
+    })
   })
 
   it('should support utf-8', function(done){
