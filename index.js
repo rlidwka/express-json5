@@ -20,7 +20,7 @@ function express_json5(options) {
 		if (!regexp.test(mime(req))) return next()
 
 		// flag as parsed
-		req._body = true;
+		req._body = true
 
 		// parse
 		getBody(req, {

@@ -3,7 +3,7 @@ json/json5 body parsing middleware
 ## API
 
 ```js
-var express_json5 = require('express_json5')
+var express_json5 = require('express-json5')
 
 var app = express()
 
